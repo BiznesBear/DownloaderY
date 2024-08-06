@@ -12,7 +12,7 @@ namespace DownloderY
         private void DownloadBtn(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(urlBox.Text)) { MessageBox.Show("Url field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            Downloader.Download(urlBox.Text, audioOnlyBtn.Checked,isPlaylistBtn.Checked);
+            Downloader.Download(urlBox.Text, audioOnlyBtn.Checked, isPlaylistBtn.Checked);
         }
 
         private void PasteBtn(object sender, EventArgs e)
@@ -30,6 +30,9 @@ namespace DownloderY
 
         }
 
-
+        private void AboutBtn(object sender, EventArgs e)
+        {
+            MessageBox.Show("Author: (C) BiznesBear\nCreated in c#\nFanks for Youtube Explode developers", "About");
+        }
     }
 }

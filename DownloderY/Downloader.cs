@@ -16,7 +16,8 @@ internal static class Downloader
         IReadOnlyList<PlaylistVideo>? playlistVideos=null;
         Playlist? playlist=null;
         Video? video = null;
-
+        IStreamInfo? streamInfo;
+        
         try
         {
             if (isPlaylist)
@@ -44,35 +45,31 @@ internal static class Downloader
             int index = 1;
             foreach(var item in playlistVideos)
             {
+                // UI
                 videoProgres.progressBar.Value = 0;
                 videoProgres.progressBar.PerformStep();
 
                 videoProgres.titleLabel.Text = item.Title;
                 videoProgres.currentElementLabel.Text = $"{index} element of {playlistVideos.Count}";
+                
                 if (item.Duration != null) videoProgres.videoLenght.Text = item.Duration.Value.ToString();
                 else videoProgres.videoLenght.Text = "";
 
+
+                // downloading
                 var streamManifest = await youtube.Videos.Streams.GetManifestAsync(item.Url);
 
-                IStreamInfo? streamInfo = null;
 
-
-                if (audioOnly)
-                {
-                    streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
-                }
-                else
-                {
-                    streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-                }
+                streamInfo = GetStreamInfo(streamManifest, audioOnly);
                 videoProgres.progressBar.PerformStep();
-
 
                 if (streamInfo == null)
                 {
                     MessageBox.Show("Valid stream info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+
                 var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
                 videoProgres.progressBar.PerformStep();
 
@@ -83,18 +80,13 @@ internal static class Downloader
             }
 
             MessageBox.Show("Playlist has been downloaded", "Success");
-
             videoProgres.Close();
-
-
-
         }
         else
         {
             if (video == null) return;
 
             videoProgres.progressBar.PerformStep();
-
 
             videoProgres.titleLabel.Text = video.Title;
             videoProgres.currentElementLabel.Text = $"1 element of 1";
@@ -103,17 +95,8 @@ internal static class Downloader
 
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(url);
 
-            IStreamInfo? streamInfo = null;
+            streamInfo = GetStreamInfo(streamManifest, audioOnly);
 
-
-            if (audioOnly)
-            {
-                streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
-            }
-            else
-            {
-                streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-            }
             videoProgres.progressBar.PerformStep();
 
 
@@ -122,11 +105,12 @@ internal static class Downloader
                 MessageBox.Show("Valid stream info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
             videoProgres.progressBar.PerformStep();
 
+            string orginalFilePath = $"{video.Title.RemoveSpecialCharacters()}.{streamInfo.Container}";
 
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, Path.Combine(GetPath(), $"{video.Title.RemoveSpecialCharacters()}.{streamInfo.Container}"));
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, Path.Combine(GetPath(), orginalFilePath));
+
             videoProgres.progressBar.PerformStep();
 
             MessageBox.Show("Youtube video has been downloaded", "Success");
@@ -134,6 +118,8 @@ internal static class Downloader
             videoProgres.Close();
         }
     }
+
+    public static IStreamInfo GetStreamInfo(StreamManifest manifest,bool state) => state ? manifest.GetAudioOnlyStreams().GetWithHighestBitrate() : manifest.GetMuxedStreams().GetWithHighestVideoQuality();
 
     public static string GetPath(string addon="")
     {

@@ -34,6 +34,7 @@
             pasteToolStripMenuItem = new ToolStripMenuItem();
             clearToolStripMenuItem = new ToolStripMenuItem();
             openFolderToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             downloadBtn = new Button();
             isPlaylistBtn = new CheckBox();
             audioOnlyBtn = new CheckBox();
@@ -65,7 +66,7 @@
             // 
             menuStrip.BackColor = Color.FromArgb(25, 25, 25);
             menuStrip.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            menuStrip.Items.AddRange(new ToolStripItem[] { pasteToolStripMenuItem, clearToolStripMenuItem, openFolderToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { pasteToolStripMenuItem, clearToolStripMenuItem, openFolderToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(587, 27);
@@ -78,6 +79,7 @@
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             pasteToolStripMenuItem.Size = new Size(66, 23);
             pasteToolStripMenuItem.Text = "Paste";
+            pasteToolStripMenuItem.ToolTipText = "Pastes the url";
             pasteToolStripMenuItem.Click += PasteBtn;
             // 
             // clearToolStripMenuItem
@@ -86,6 +88,7 @@
             clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             clearToolStripMenuItem.Size = new Size(66, 23);
             clearToolStripMenuItem.Text = "Clear";
+            clearToolStripMenuItem.ToolTipText = "Clears the url";
             clearToolStripMenuItem.Click += ClearBtn;
             // 
             // openFolderToolStripMenuItem
@@ -94,7 +97,16 @@
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
             openFolderToolStripMenuItem.Size = new Size(120, 23);
             openFolderToolStripMenuItem.Text = "Open folder";
+            openFolderToolStripMenuItem.ToolTipText = "Opens folder with all of the videos";
             openFolderToolStripMenuItem.Click += OpenFolderBtn;
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.ForeColor = Color.White;
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(66, 23);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += AboutBtn;
             // 
             // downloadBtn
             // 
@@ -184,8 +196,6 @@
         #endregion
 
         private TextBox urlBox;
-        private RadioButton videoRadioBtn;
-        private RadioButton audioRadioBtn;
         private MenuStrip menuStrip;
         private ToolStripMenuItem pasteToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem;
@@ -195,5 +205,6 @@
         private Panel panel;
         private ToolStripMenuItem clearToolStripMenuItem;
         private GroupBox settingsBox;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
