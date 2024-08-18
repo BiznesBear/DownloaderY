@@ -32,7 +32,7 @@ namespace DownloderY
 
         private void AboutBtn(object sender, EventArgs e)
         {
-            MessageBox.Show("Author: (C) BiznesBear\nCreated in c#\nFanks for Youtube Explode developers", "About");
+            MessageBox.Show("Author: BiznesBear\nSpecial fanks to Youtube Explode nuget package", "About");
         }
     }
 }

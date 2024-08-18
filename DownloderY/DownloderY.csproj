@@ -6,17 +6,16 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>ytdownloadericon.ico</ApplicationIcon>
+    <ApplicationIcon>images\ytdownloadericon.ico</ApplicationIcon>
+    <StartupObject>DownloderY.Program</StartupObject>
 	
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="ytdownloadericon.ico" />
+    <Content Include="images\ytdownloadericon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="NAudio.Lame" Version="2.1.0" />
     <PackageReference Include="YoutubeExplode" Version="6.3.16" />
     <PackageReference Include="YoutubeExplode.Converter" Version="6.3.16" />
   </ItemGroup>
@@ -60,9 +59,21 @@
     <None Update="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.32.dll">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
+    <None Update="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.32.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.32.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.64.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.64.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.64.dll">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
@@ -74,6 +85,14 @@
 
   <ItemGroup>
     <None Remove="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.32.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.32.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.64.dll" />
   </ItemGroup>
 
 </Project>

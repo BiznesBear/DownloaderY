@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:DownloaderY Setup"
+"ProjectName" = "8:DownloaderY Installer"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -43,6 +43,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -59,6 +75,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -177,7 +201,7 @@
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:BiznesBear"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
+        "ARPHELPLINK" = "8:https://github.com/BiznesBear/DownloderY"
         "Title" = "8:DownloaderY "
         "Subject" = "8:"
         "ARPCONTACT" = "8:BiznesBear"
@@ -291,12 +315,26 @@
             {
             "Name" = "8:DownloaderY"
             "Arguments" = "8:"
-            "Description" = "8:"
+            "Description" = "8:A youtube video downloader"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_782CAFDC0E354C88BD1A4FBFA5291CA9"
             "Folder" = "8:_03E51265A7A54F28A25C662312032500"
+            "WorkingFolder" = "8:_6F1411DE3B7A4082B176A6D692E22E6B"
+            "Icon" = "8:_EB5A03CC56C84E85835B2A2A81E6461F"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9F5685F30C40449093A0F17A230BDF62"
+            {
+            "Name" = "8:DownloaderY"
+            "Arguments" = "8:"
+            "Description" = "8:A youtube video downloader"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_782CAFDC0E354C88BD1A4FBFA5291CA9"
+            "Folder" = "8:_2F2E3D2750AA4DDD8C2A5A48863EA03C"
             "WorkingFolder" = "8:_6F1411DE3B7A4082B176A6D692E22E6B"
             "Icon" = "8:_EB5A03CC56C84E85835B2A2A81E6461F"
             "Feature" = "8:"
@@ -724,6 +762,7 @@
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{165AEF15-03A3-482B-A086-669217DC2378}"
             "ShowKeyOutput" = "11:TRUE"
+            "PublishProfilePath" = "8:Properties\\PublishProfiles\\FolderProfile.pubxml"
                 "ExcludeFilters"
                 {
                 }

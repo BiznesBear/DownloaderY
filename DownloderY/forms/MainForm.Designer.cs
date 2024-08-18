@@ -58,8 +58,8 @@
             urlBox.MaxLength = 100;
             urlBox.Name = "urlBox";
             urlBox.PlaceholderText = "Paste video url here";
-            urlBox.ScrollBars = ScrollBars.Vertical;
-            urlBox.Size = new Size(587, 30);
+            urlBox.ScrollBars = ScrollBars.Horizontal;
+            urlBox.Size = new Size(629, 30);
             urlBox.TabIndex = 0;
             // 
             // menuStrip
@@ -69,7 +69,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { pasteToolStripMenuItem, clearToolStripMenuItem, openFolderToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(587, 27);
+            menuStrip.Size = new Size(629, 27);
             menuStrip.TabIndex = 4;
             // 
             // pasteToolStripMenuItem
@@ -114,34 +114,41 @@
             downloadBtn.Dock = DockStyle.Bottom;
             downloadBtn.FlatStyle = FlatStyle.Popup;
             downloadBtn.ForeColor = SystemColors.Window;
-            downloadBtn.Location = new Point(0, 250);
-            downloadBtn.Margin = new Padding(6);
+            downloadBtn.Image = (Image)resources.GetObject("downloadBtn.Image");
+            downloadBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            downloadBtn.Location = new Point(0, 190);
+            downloadBtn.Margin = new Padding(6, 6, 6, 60);
             downloadBtn.Name = "downloadBtn";
-            downloadBtn.Size = new Size(587, 34);
+            downloadBtn.Padding = new Padding(0, 0, 30, 0);
+            downloadBtn.Size = new Size(629, 34);
             downloadBtn.TabIndex = 3;
             downloadBtn.Text = "Download";
+            downloadBtn.TextAlign = ContentAlignment.MiddleRight;
             downloadBtn.UseVisualStyleBackColor = false;
             downloadBtn.Click += DownloadBtn;
             // 
             // isPlaylistBtn
             // 
+            isPlaylistBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             isPlaylistBtn.AutoSize = true;
-            isPlaylistBtn.Location = new Point(12, 65);
+            isPlaylistBtn.BackColor = Color.Transparent;
+            isPlaylistBtn.Location = new Point(192, 38);
             isPlaylistBtn.Name = "isPlaylistBtn";
             isPlaylistBtn.Size = new Size(161, 28);
             isPlaylistBtn.TabIndex = 6;
             isPlaylistBtn.Text = "Is playlist";
-            isPlaylistBtn.UseVisualStyleBackColor = true;
+            isPlaylistBtn.UseVisualStyleBackColor = false;
             // 
             // audioOnlyBtn
             // 
             audioOnlyBtn.AutoSize = true;
-            audioOnlyBtn.Location = new Point(12, 31);
+            audioOnlyBtn.BackColor = Color.Transparent;
+            audioOnlyBtn.Location = new Point(13, 38);
             audioOnlyBtn.Name = "audioOnlyBtn";
             audioOnlyBtn.Size = new Size(173, 28);
             audioOnlyBtn.TabIndex = 7;
             audioOnlyBtn.Text = "Audio format";
-            audioOnlyBtn.UseVisualStyleBackColor = true;
+            audioOnlyBtn.UseVisualStyleBackColor = false;
             // 
             // panel
             // 
@@ -150,7 +157,7 @@
             panel.Dock = DockStyle.Fill;
             panel.Location = new Point(0, 57);
             panel.Name = "panel";
-            panel.Size = new Size(587, 284);
+            panel.Size = new Size(629, 224);
             panel.TabIndex = 3;
             // 
             // settingsBox
@@ -161,9 +168,10 @@
             settingsBox.FlatStyle = FlatStyle.Flat;
             settingsBox.ForeColor = Color.White;
             settingsBox.Location = new Point(0, 0);
-            settingsBox.Margin = new Padding(6);
+            settingsBox.Margin = new Padding(10);
             settingsBox.Name = "settingsBox";
-            settingsBox.Size = new Size(587, 250);
+            settingsBox.Padding = new Padding(10);
+            settingsBox.Size = new Size(629, 190);
             settingsBox.TabIndex = 8;
             settingsBox.TabStop = false;
             settingsBox.Text = "Settings";
@@ -173,7 +181,7 @@
             AutoScaleDimensions = new SizeF(12F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(587, 341);
+            ClientSize = new Size(629, 281);
             Controls.Add(panel);
             Controls.Add(urlBox);
             Controls.Add(menuStrip);
@@ -182,6 +190,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip;
             Margin = new Padding(5);
+            MinimumSize = new Size(436, 264);
             Name = "MainForm";
             Text = "Downloader Y";
             menuStrip.ResumeLayout(false);
