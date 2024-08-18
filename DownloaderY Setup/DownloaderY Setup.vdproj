@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_782CAFDC0E354C88BD1A4FBFA5291CA9"
+        "MsmKey" = "8:_219A54A228C644DC832DBAFF79997A90"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_EB5A03CC56C84E85835B2A2A81E6461F"
+        "MsmKey" = "8:_782CAFDC0E354C88BD1A4FBFA5291CA9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -82,6 +82,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -114,10 +122,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EB5A03CC56C84E85835B2A2A81E6461F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_219A54A228C644DC832DBAFF79997A90"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\Downloads\\ytdownloadericon.ico"
-            "TargetName" = "8:icon.ico"
+            "SourcePath" = "8:..\\DownloderY\\images\\ytdownloadericon.ico"
+            "TargetName" = "8:ytdownloadericon.ico"
             "Tag" = "8:"
             "Folder" = "8:_6F1411DE3B7A4082B176A6D692E22E6B"
             "Condition" = "8:"
@@ -189,16 +197,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:DownloaderY Setup"
+        "ProductName" = "8:DownloaderY Installer"
         "ProductCode" = "8:{1B82785D-22F4-4976-824B-1B3E6E834B4F}"
-        "PackageCode" = "8:{C082D544-5F77-40F8-842D-29F2BEB21601}"
+        "PackageCode" = "8:{23CC9C47-494B-43D9-A5C5-35D30658DC15}"
         "UpgradeCode" = "8:{21E185AD-088E-4773-9034-2A470011ECF5}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:BiznesBear"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/BiznesBear/DownloderY"
@@ -322,7 +330,7 @@
             "Target" = "8:_782CAFDC0E354C88BD1A4FBFA5291CA9"
             "Folder" = "8:_03E51265A7A54F28A25C662312032500"
             "WorkingFolder" = "8:_6F1411DE3B7A4082B176A6D692E22E6B"
-            "Icon" = "8:_EB5A03CC56C84E85835B2A2A81E6461F"
+            "Icon" = "8:_219A54A228C644DC832DBAFF79997A90"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9F5685F30C40449093A0F17A230BDF62"
@@ -336,7 +344,7 @@
             "Target" = "8:_782CAFDC0E354C88BD1A4FBFA5291CA9"
             "Folder" = "8:_2F2E3D2750AA4DDD8C2A5A48863EA03C"
             "WorkingFolder" = "8:_6F1411DE3B7A4082B176A6D692E22E6B"
-            "Icon" = "8:_EB5A03CC56C84E85835B2A2A81E6461F"
+            "Icon" = "8:_219A54A228C644DC832DBAFF79997A90"
             "Feature" = "8:"
             }
         }
@@ -740,7 +748,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_782CAFDC0E354C88BD1A4FBFA5291CA9"
             {
-            "SourcePath" = "8:..\\DownloderY\\obj\\Debug\\net8.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\DownloderY\\bin\\Release\\net8.0-windows\\publish\\win-x86\\DownloderY.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6F1411DE3B7A4082B176A6D692E22E6B"
