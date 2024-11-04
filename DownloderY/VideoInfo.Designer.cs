@@ -104,9 +104,10 @@
         }
 
         #endregion
-        internal ProgressBar progressBar;
-        internal Label titleLabel;
-        internal Label videoLenght;
-        internal Label currentElementLabel;
+
+        private ProgressBar progressBar;
+        private Label titleLabel;
+        private Label videoLenght;
+        private Label currentElementLabel;
     }
 }
