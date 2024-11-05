@@ -12,7 +12,7 @@ public partial class MainForm : Form
     private void DownloadBtn(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(urlBox.Text)) { MessageBox.Show("Url field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-        Downloader.Download(urlBox.Text, audioOnlyBtn.Checked, isPlaylistBtn.Checked);
+        Downloader.Download(urlBox.Text, audioOnlyBtn.Checked, isPlaylistBtn.Checked,(FileFormat)fileFormatComboBox.SelectedIndex);
     }
 
     private void PasteBtn(object sender, EventArgs e)

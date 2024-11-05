@@ -40,6 +40,8 @@
             audioOnlyBtn = new CheckBox();
             panel = new Panel();
             settingsBox = new GroupBox();
+            fileFormatComboBox = new ComboBox();
+            fileFormatLabel = new Label();
             menuStrip.SuspendLayout();
             panel.SuspendLayout();
             settingsBox.SuspendLayout();
@@ -145,9 +147,9 @@
             audioOnlyBtn.BackColor = Color.Transparent;
             audioOnlyBtn.Location = new Point(13, 38);
             audioOnlyBtn.Name = "audioOnlyBtn";
-            audioOnlyBtn.Size = new Size(173, 28);
+            audioOnlyBtn.Size = new Size(149, 28);
             audioOnlyBtn.TabIndex = 7;
-            audioOnlyBtn.Text = "Audio format";
+            audioOnlyBtn.Text = "Only audio";
             audioOnlyBtn.UseVisualStyleBackColor = false;
             // 
             // panel
@@ -162,6 +164,8 @@
             // 
             // settingsBox
             // 
+            settingsBox.Controls.Add(fileFormatLabel);
+            settingsBox.Controls.Add(fileFormatComboBox);
             settingsBox.Controls.Add(isPlaylistBtn);
             settingsBox.Controls.Add(audioOnlyBtn);
             settingsBox.Dock = DockStyle.Fill;
@@ -175,6 +179,28 @@
             settingsBox.TabIndex = 8;
             settingsBox.TabStop = false;
             settingsBox.Text = "Settings";
+            // 
+            // fileFormatComboBox
+            // 
+            fileFormatComboBox.BackColor = Color.FromArgb(25, 25, 25);
+            fileFormatComboBox.FlatStyle = FlatStyle.System;
+            fileFormatComboBox.ForeColor = SystemColors.ButtonHighlight;
+            fileFormatComboBox.FormattingEnabled = true;
+            fileFormatComboBox.Items.AddRange(new object[] { "Defalut", ".mp4", ".mp3", ".webm", ".wav" });
+            fileFormatComboBox.Location = new Point(173, 69);
+            fileFormatComboBox.Name = "fileFormatComboBox";
+            fileFormatComboBox.Size = new Size(165, 32);
+            fileFormatComboBox.TabIndex = 8;
+            fileFormatComboBox.Text = "Defalut";
+            // 
+            // fileFormatLabel
+            // 
+            fileFormatLabel.AutoSize = true;
+            fileFormatLabel.Location = new Point(13, 72);
+            fileFormatLabel.Name = "fileFormatLabel";
+            fileFormatLabel.Size = new Size(154, 24);
+            fileFormatLabel.TabIndex = 9;
+            fileFormatLabel.Text = "File format:";
             // 
             // MainForm
             // 
@@ -215,5 +241,7 @@
         private ToolStripMenuItem clearToolStripMenuItem;
         private GroupBox settingsBox;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ComboBox fileFormatComboBox;
+        private Label fileFormatLabel;
     }
 }

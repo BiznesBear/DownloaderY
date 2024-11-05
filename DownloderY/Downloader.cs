@@ -3,18 +3,19 @@ using YoutubeExplode.Common;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Playlists;
 using YoutubeExplode.Videos.Streams;
+using YoutubeExplode.Exceptions;
 using System.Text.RegularExpressions;
-using YoutubeExplode.Converter;
+
 
 namespace DownloderY;
-internal static class Downloader
+public static class Downloader
 {
-    private static readonly string dirName = "DownloaderY";
-    public static string defalutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), dirName);
+    private const string dirName = "DownloaderY";
+    public static readonly string defalutPath  = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), dirName);
 
-    public static async void Download(string url, bool audioOnly, bool isPlaylist)
+    public static async void Download(string url, bool audioOnly, bool isPlaylist, FileFormat fileFormat)
     {
-        var youtube = new YoutubeClient();
+        var client = new YoutubeClient();
         IReadOnlyList<IVideo>? videos;
         Playlist? playlist = null;
         IStreamInfo? streamInfo;
@@ -23,10 +24,10 @@ internal static class Downloader
         {
             if (isPlaylist)
             {
-                playlist = await youtube.Playlists.GetAsync(url);
-                videos = await youtube.Playlists.GetVideosAsync(url);
+                playlist = await client.Playlists.GetAsync(url);
+                videos = await client.Playlists.GetVideosAsync(url);
             }
-            else videos = [await youtube.Videos.GetAsync(url)];
+            else videos = [await client.Videos.GetAsync(url)];
         }
         catch (Exception e)
         {
@@ -34,11 +35,13 @@ internal static class Downloader
             return;
         }
 
+        // creating video progress window
         VideoInfo videoProgress = new();
         videoProgress.Show();
 
-        if (videos == null) return;
-        if (playlist == null && isPlaylist) return;
+
+        if (videos == null) throw new Exception("There's no videos to download");
+        if (playlist == null && isPlaylist) throw new Exception("There's no playlist to download");
 
         int index = 1;
         foreach (var item in videos)
@@ -47,33 +50,40 @@ internal static class Downloader
             videoProgress.Set(new(item, index, videos.Count));
 
             // downloading stream manifest
-            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(item.Url);
-
-
+            var streamManifest = await client.Videos.Streams.GetManifestAsync(item.Url);
             streamInfo = GetStreamInfo(streamManifest, audioOnly);
+
+
             videoProgress.Step();
 
             if (streamInfo == null)
-            {
-                MessageBox.Show("Valid stream info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                throw new YoutubeExplodeException("Valid stream info");
 
-            var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
+
+            var stream = await client.Videos.Streams.GetAsync(streamInfo);
             videoProgress.Step();
 
+            // creating path
+            string format = fileFormat switch 
+            {
+                FileFormat.Defalut => streamInfo.Container.ToString(),
+                FileFormat.Mp4 => "mp4",
+                FileFormat.Mp3 => "mp3",
+                FileFormat.WebM => "webm",
+                FileFormat.Wav => "wav",
+                _ => streamInfo.Container.ToString()
+            };
 
-            string orginalFilePath = $"{item.Title.RemoveSpecialCharacters()}.{streamInfo.Container}";
+            string orginalFilePath = $"{item.Title.RemoveSpecialCharacters()}.{format}";
             string path = playlist != null && isPlaylist ? Path.Combine(GetPath(playlist.Title.RemoveSpecialCharacters()), orginalFilePath) : Path.Combine(GetPath(), orginalFilePath);
 
+            // downloading video
+            await client.Videos.Streams.DownloadAsync(streamInfo, path);
 
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, path);
-
-
+            // ending sequence
             videoProgress.Step();
             index++;
         }
-
         MessageBox.Show("All videos downloaded successfully", "Success");
         videoProgress.Close();
     }
@@ -89,7 +99,14 @@ internal static class Downloader
         return path;
     }
 }
-
+public enum FileFormat
+{
+    Defalut,
+    Mp4,
+    Mp3,
+    WebM,
+    Wav,
+}
 public static class Extensions
 {
     public static string RemoveSpecialCharacters(this string str)
