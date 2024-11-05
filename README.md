@@ -1,7 +1,6 @@
 # DownloderY
-Simple youtube video and playlist downloader created in windows form that using YouTube Explode nuget package.
+Very simple youtube video and playlist downloader created in windows forms. 
+DownloaderY uses the [Youtube Explode](https://github.com/Tyrrrz/YoutubeExplode) nuget pack. Thank you for making this program possible.
 
-This program (like 100000... other) allows you to watch youtube videos ~~without adds~~ offline :).
 # Screenshot
-![image](https://github.com/user-attachments/assets/622c9e9c-b506-4cee-ac49-af785cdda426)
-
+![image](https://github.com/user-attachments/assets/78306512-c2c3-43a7-af68-42a667dbaa45)
