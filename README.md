@@ -1,4 +1,4 @@
-# DownloderY
+# DownloaderY
 Very simple youtube video and playlist downloader created in windows forms. 
 DownloaderY uses the [Youtube Explode](https://github.com/Tyrrrz/YoutubeExplode) nuget pack. Thank you for making this program possible.
 
