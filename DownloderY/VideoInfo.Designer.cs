@@ -51,7 +51,6 @@
             titleLabel.AutoSize = true;
             titleLabel.Dock = DockStyle.Top;
             titleLabel.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            titleLabel.ForeColor = Color.White;
             titleLabel.Location = new Point(0, 0);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(60, 22);
@@ -63,7 +62,6 @@
             videoLenght.AutoSize = true;
             videoLenght.Dock = DockStyle.Top;
             videoLenght.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            videoLenght.ForeColor = Color.White;
             videoLenght.Location = new Point(0, 22);
             videoLenght.Name = "videoLenght";
             videoLenght.Size = new Size(70, 22);
@@ -75,7 +73,6 @@
             currentElementLabel.AutoSize = true;
             currentElementLabel.Dock = DockStyle.Bottom;
             currentElementLabel.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            currentElementLabel.ForeColor = Color.White;
             currentElementLabel.Location = new Point(0, 152);
             currentElementLabel.Name = "currentElementLabel";
             currentElementLabel.Size = new Size(150, 22);
@@ -86,7 +83,6 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(596, 197);
             ControlBox = false;
             Controls.Add(currentElementLabel);

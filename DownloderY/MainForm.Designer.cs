@@ -40,8 +40,8 @@
             audioOnlyBtn = new CheckBox();
             panel = new Panel();
             settingsBox = new GroupBox();
-            fileFormatComboBox = new ComboBox();
             fileFormatLabel = new Label();
+            fileFormatComboBox = new ComboBox();
             menuStrip.SuspendLayout();
             panel.SuspendLayout();
             settingsBox.SuspendLayout();
@@ -50,7 +50,6 @@
             // urlBox
             // 
             urlBox.AllowDrop = true;
-            urlBox.BackColor = Color.FromArgb(20, 20, 20);
             urlBox.BorderStyle = BorderStyle.FixedSingle;
             urlBox.Dock = DockStyle.Top;
             urlBox.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
@@ -66,7 +65,6 @@
             // 
             // menuStrip
             // 
-            menuStrip.BackColor = Color.FromArgb(25, 25, 25);
             menuStrip.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             menuStrip.Items.AddRange(new ToolStripItem[] { pasteToolStripMenuItem, clearToolStripMenuItem, openFolderToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
@@ -76,8 +74,6 @@
             // 
             // pasteToolStripMenuItem
             // 
-            pasteToolStripMenuItem.BackColor = Color.FromArgb(25, 25, 25);
-            pasteToolStripMenuItem.ForeColor = Color.White;
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             pasteToolStripMenuItem.Size = new Size(66, 23);
             pasteToolStripMenuItem.Text = "Paste";
@@ -86,7 +82,6 @@
             // 
             // clearToolStripMenuItem
             // 
-            clearToolStripMenuItem.ForeColor = Color.White;
             clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             clearToolStripMenuItem.Size = new Size(66, 23);
             clearToolStripMenuItem.Text = "Clear";
@@ -95,7 +90,6 @@
             // 
             // openFolderToolStripMenuItem
             // 
-            openFolderToolStripMenuItem.ForeColor = Color.White;
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
             openFolderToolStripMenuItem.Size = new Size(120, 23);
             openFolderToolStripMenuItem.Text = "Open folder";
@@ -104,7 +98,6 @@
             // 
             // aboutToolStripMenuItem
             // 
-            aboutToolStripMenuItem.ForeColor = Color.White;
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(66, 23);
             aboutToolStripMenuItem.Text = "About";
@@ -133,7 +126,6 @@
             // 
             isPlaylistBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             isPlaylistBtn.AutoSize = true;
-            isPlaylistBtn.BackColor = Color.Transparent;
             isPlaylistBtn.Location = new Point(192, 38);
             isPlaylistBtn.Name = "isPlaylistBtn";
             isPlaylistBtn.Size = new Size(161, 28);
@@ -144,7 +136,6 @@
             // audioOnlyBtn
             // 
             audioOnlyBtn.AutoSize = true;
-            audioOnlyBtn.BackColor = Color.Transparent;
             audioOnlyBtn.Location = new Point(13, 38);
             audioOnlyBtn.Name = "audioOnlyBtn";
             audioOnlyBtn.Size = new Size(149, 28);
@@ -170,7 +161,6 @@
             settingsBox.Controls.Add(audioOnlyBtn);
             settingsBox.Dock = DockStyle.Fill;
             settingsBox.FlatStyle = FlatStyle.Flat;
-            settingsBox.ForeColor = Color.White;
             settingsBox.Location = new Point(0, 0);
             settingsBox.Margin = new Padding(10);
             settingsBox.Name = "settingsBox";
@@ -179,19 +169,6 @@
             settingsBox.TabIndex = 8;
             settingsBox.TabStop = false;
             settingsBox.Text = "Settings";
-            // 
-            // fileFormatComboBox
-            // 
-            fileFormatComboBox.BackColor = Color.FromArgb(25, 25, 25);
-            fileFormatComboBox.FlatStyle = FlatStyle.System;
-            fileFormatComboBox.ForeColor = SystemColors.ButtonHighlight;
-            fileFormatComboBox.FormattingEnabled = true;
-            fileFormatComboBox.Items.AddRange(new object[] { "Defalut", ".mp4", ".mp3", ".webm", ".wav" });
-            fileFormatComboBox.Location = new Point(173, 69);
-            fileFormatComboBox.Name = "fileFormatComboBox";
-            fileFormatComboBox.Size = new Size(165, 32);
-            fileFormatComboBox.TabIndex = 8;
-            fileFormatComboBox.Text = "Defalut";
             // 
             // fileFormatLabel
             // 
@@ -202,17 +179,26 @@
             fileFormatLabel.TabIndex = 9;
             fileFormatLabel.Text = "File format:";
             // 
+            // fileFormatComboBox
+            // 
+            fileFormatComboBox.FlatStyle = FlatStyle.System;
+            fileFormatComboBox.FormattingEnabled = true;
+            fileFormatComboBox.Items.AddRange(new object[] { "Defalut", ".mp4", ".mp3", ".webm", ".wav" });
+            fileFormatComboBox.Location = new Point(173, 69);
+            fileFormatComboBox.Name = "fileFormatComboBox";
+            fileFormatComboBox.Size = new Size(165, 32);
+            fileFormatComboBox.TabIndex = 8;
+            fileFormatComboBox.Text = "Defalut";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(12F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(629, 281);
             Controls.Add(panel);
             Controls.Add(urlBox);
             Controls.Add(menuStrip);
             Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            ForeColor = Color.White;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip;
             Margin = new Padding(5);
