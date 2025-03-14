@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>images\ytdownloadericon.ico</ApplicationIcon>
-    <StartupObject>DownloderY.Program</StartupObject>
+    <StartupObject>DownloaderY.Program</StartupObject>
 	
   </PropertyGroup>
 
@@ -16,8 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="YoutubeExplode" Version="6.4.4" />
-    <PackageReference Include="YoutubeExplode.Converter" Version="6.4.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="YoutubeExplode" Version="6.5.4" />
+    <PackageReference Include="YoutubeExplode.Converter" Version="6.5.4" />
   </ItemGroup>
 
   <ItemGroup>

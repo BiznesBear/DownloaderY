@@ -1,4 +1,4 @@
-﻿namespace DownloderY
+﻿namespace DownloaderY
 {
     partial class VideoInfo
     {

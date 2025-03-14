@@ -1,4 +1,4 @@
-namespace DownloderY;
+namespace DownloaderY;
 
 internal static class Program
 {

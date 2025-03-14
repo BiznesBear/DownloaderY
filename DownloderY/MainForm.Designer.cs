@@ -1,4 +1,4 @@
-﻿namespace DownloderY
+﻿namespace DownloaderY
 {
     partial class MainForm
     {
@@ -40,6 +40,7 @@
             audioOnlyBtn = new CheckBox();
             panel = new Panel();
             settingsBox = new GroupBox();
+            historyListBox = new ListBox();
             fileFormatLabel = new Label();
             fileFormatComboBox = new ComboBox();
             menuStrip.SuspendLayout();
@@ -60,7 +61,7 @@
             urlBox.Name = "urlBox";
             urlBox.PlaceholderText = "Paste video url here";
             urlBox.ScrollBars = ScrollBars.Horizontal;
-            urlBox.Size = new Size(629, 30);
+            urlBox.Size = new Size(701, 30);
             urlBox.TabIndex = 0;
             // 
             // menuStrip
@@ -69,7 +70,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { pasteToolStripMenuItem, clearToolStripMenuItem, openFolderToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(629, 27);
+            menuStrip.Size = new Size(701, 27);
             menuStrip.TabIndex = 4;
             // 
             // pasteToolStripMenuItem
@@ -111,11 +112,11 @@
             downloadBtn.ForeColor = SystemColors.Window;
             downloadBtn.Image = (Image)resources.GetObject("downloadBtn.Image");
             downloadBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            downloadBtn.Location = new Point(0, 190);
+            downloadBtn.Location = new Point(0, 230);
             downloadBtn.Margin = new Padding(6, 6, 6, 60);
             downloadBtn.Name = "downloadBtn";
             downloadBtn.Padding = new Padding(0, 0, 30, 0);
-            downloadBtn.Size = new Size(629, 34);
+            downloadBtn.Size = new Size(701, 34);
             downloadBtn.TabIndex = 3;
             downloadBtn.Text = "Download";
             downloadBtn.TextAlign = ContentAlignment.MiddleRight;
@@ -150,11 +151,12 @@
             panel.Dock = DockStyle.Fill;
             panel.Location = new Point(0, 57);
             panel.Name = "panel";
-            panel.Size = new Size(629, 224);
+            panel.Size = new Size(701, 264);
             panel.TabIndex = 3;
             // 
             // settingsBox
             // 
+            settingsBox.Controls.Add(historyListBox);
             settingsBox.Controls.Add(fileFormatLabel);
             settingsBox.Controls.Add(fileFormatComboBox);
             settingsBox.Controls.Add(isPlaylistBtn);
@@ -165,10 +167,24 @@
             settingsBox.Margin = new Padding(10);
             settingsBox.Name = "settingsBox";
             settingsBox.Padding = new Padding(10);
-            settingsBox.Size = new Size(629, 190);
+            settingsBox.Size = new Size(701, 230);
             settingsBox.TabIndex = 8;
             settingsBox.TabStop = false;
             settingsBox.Text = "Settings";
+            // 
+            // historyListBox
+            // 
+            historyListBox.BorderStyle = BorderStyle.None;
+            historyListBox.Dock = DockStyle.Right;
+            historyListBox.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            historyListBox.FormattingEnabled = true;
+            historyListBox.Items.AddRange(new object[] { "Loading..." });
+            historyListBox.Location = new Point(354, 35);
+            historyListBox.Margin = new Padding(300, 3, 3, 3);
+            historyListBox.Name = "historyListBox";
+            historyListBox.Size = new Size(337, 185);
+            historyListBox.TabIndex = 10;
+            historyListBox.MouseDoubleClick += HistoryListBox_MouseDoubleClick;
             // 
             // fileFormatLabel
             // 
@@ -194,7 +210,7 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(629, 281);
+            ClientSize = new Size(701, 321);
             Controls.Add(panel);
             Controls.Add(urlBox);
             Controls.Add(menuStrip);
@@ -229,5 +245,6 @@
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ComboBox fileFormatComboBox;
         private Label fileFormatLabel;
+        private ListBox historyListBox;
     }
 }

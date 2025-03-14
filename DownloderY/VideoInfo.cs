@@ -1,6 +1,6 @@
 ﻿using YoutubeExplode.Videos;
 
-namespace DownloderY;
+namespace DownloaderY;
 public record ProgresInfo(IVideo Item, int Index, int VideoCount);
 public partial class VideoInfo : Form
 {

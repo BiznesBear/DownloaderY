@@ -6,14 +6,14 @@ using YoutubeExplode.Videos.Streams;
 using YoutubeExplode.Exceptions;
 using System.Text.RegularExpressions;
 
+namespace DownloaderY;
 
-namespace DownloderY;
 public static class Downloader
 {
     private const string dirName = "DownloaderY";
     public static readonly string defalutPath  = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), dirName);
 
-    public static async void Download(string url, bool audioOnly, bool isPlaylist, FileFormat fileFormat)
+    public static async Task Download(string url, bool audioOnly, bool isPlaylist, FileFormat fileFormat)
     {
         var client = new YoutubeClient();
         IReadOnlyList<IVideo>? videos;
@@ -34,7 +34,7 @@ public static class Downloader
             MessageBox.Show("Url is valid: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-
+        
         // creating video progress window
         VideoInfo videoProgress = new();
         videoProgress.Show();
@@ -66,18 +66,18 @@ public static class Downloader
             // creating path
             string format = fileFormat switch 
             {
-                FileFormat.Defalut => streamInfo.Container.ToString(),
                 FileFormat.Mp4 => "mp4",
                 FileFormat.Mp3 => "mp3",
                 FileFormat.WebM => "webm",
                 FileFormat.Wav => "wav",
-                _ => streamInfo.Container.ToString()
+                FileFormat.Defalut or _ => streamInfo.Container.ToString()
             };
 
             string orginalFilePath = $"{item.Title.RemoveSpecialCharacters()}.{format}";
             string path = playlist != null && isPlaylist ? Path.Combine(GetPath(playlist.Title.RemoveSpecialCharacters()), orginalFilePath) : Path.Combine(GetPath(), orginalFilePath);
 
             // downloading video
+            //await client.Videos.DownloadAsync(item.Id, path);
             await client.Videos.Streams.DownloadAsync(streamInfo, path);
 
             // ending sequence
@@ -87,6 +87,7 @@ public static class Downloader
         MessageBox.Show("All videos downloaded successfully", "Success");
         videoProgress.Close();
     }
+
 
     public static IStreamInfo GetStreamInfo(StreamManifest manifest, bool state) =>
         state ? manifest.GetAudioOnlyStreams().GetWithHighestBitrate() : manifest.GetMuxedStreams().GetWithHighestVideoQuality();
@@ -99,6 +100,7 @@ public static class Downloader
         return path;
     }
 }
+
 public enum FileFormat
 {
     Defalut,
@@ -107,11 +109,15 @@ public enum FileFormat
     WebM,
     Wav,
 }
-public static class Extensions
+
+public static partial class Extensions
 {
     public static string RemoveSpecialCharacters(this string str)
     {
-        Regex regex = new("[^a-zA-Z0-9]");
+        Regex regex = SpecialCharacters();
         return regex.Replace(str, "");
     }
+
+    [GeneratedRegex("[^a-zA-Z0-9]")]
+    private static partial Regex SpecialCharacters();
 }
