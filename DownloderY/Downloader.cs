@@ -2,8 +2,7 @@ using YoutubeExplode;
 using YoutubeExplode.Common;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Playlists;
-using YoutubeExplode.Videos.Streams;
-using YoutubeExplode.Exceptions;
+using YoutubeExplode.Converter;
 using System.Text.RegularExpressions;
 
 namespace DownloaderY;
@@ -13,17 +12,20 @@ public static class Downloader
     private const string dirName = "DownloaderY";
     public static readonly string defalutPath  = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), dirName);
 
-    public static async Task Download(string url, bool audioOnly, bool isPlaylist, FileFormat fileFormat)
+    public static async Task Download(string url, FileFormat fileFormat)
     {
+        VideoInfo videoProgress = new();
+        videoProgress.Show();
+
         var client = new YoutubeClient();
         IReadOnlyList<IVideo>? videos;
         Playlist? playlist = null;
-        IStreamInfo? streamInfo;
+        var isPlaylist = url.Contains("playlist?");
 
         try
         {
             if (isPlaylist)
-            {
+            { 
                 playlist = await client.Playlists.GetAsync(url);
                 videos = await client.Playlists.GetVideosAsync(url);
             }
@@ -36,61 +38,49 @@ public static class Downloader
         }
         
         // creating video progress window
-        VideoInfo videoProgress = new();
-        videoProgress.Show();
+        
 
-
-        if (videos == null) throw new Exception("There's no videos to download");
-        if (playlist == null && isPlaylist) throw new Exception("There's no playlist to download");
+        if (videos == null) 
+            throw new Exception("There's no videos to download");
+        if (playlist == null && isPlaylist) 
+            throw new Exception("There's no playlist to download");
 
         int index = 1;
-        foreach (var item in videos)
+        foreach (var video in videos)
         {
             // UI
-            videoProgress.Set(new(item, index, videos.Count));
-
-            // downloading stream manifest
-            var streamManifest = await client.Videos.Streams.GetManifestAsync(item.Url);
-            streamInfo = GetStreamInfo(streamManifest, audioOnly);
-
-
-            videoProgress.Step();
-
-            if (streamInfo == null)
-                throw new YoutubeExplodeException("Valid stream info");
-
-
-            var stream = await client.Videos.Streams.GetAsync(streamInfo);
-            videoProgress.Step();
+            videoProgress.Set(video, index, videos.Count);
 
             // creating path
             string format = fileFormat switch 
             {
                 FileFormat.Mp4 => "mp4",
-                FileFormat.Mp3 => "mp3",
                 FileFormat.WebM => "webm",
                 FileFormat.Wav => "wav",
-                FileFormat.Defalut or _ => streamInfo.Container.ToString()
+                FileFormat.Mp3 or _ => "mp3",
             };
 
-            string orginalFilePath = $"{item.Title.RemoveSpecialCharacters()}.{format}";
+            string orginalFilePath = $"{video.Title.RemoveSpecialCharacters()}.{format}";
             string path = playlist != null && isPlaylist ? Path.Combine(GetPath(playlist.Title.RemoveSpecialCharacters()), orginalFilePath) : Path.Combine(GetPath(), orginalFilePath);
 
             // downloading video
-            //await client.Videos.DownloadAsync(item.Id, path);
-            await client.Videos.Streams.DownloadAsync(streamInfo, path);
+            try
+            {
+                await client.Videos.DownloadAsync(video.Id, path);
+            }
+            catch
+            {
+                videoProgress.Set(video, index, videos.Count, true);
+                Thread.Sleep(1000);
+            }
 
             // ending sequence
-            videoProgress.Step();
             index++;
         }
+
         MessageBox.Show("All videos downloaded successfully", "Success");
         videoProgress.Close();
     }
-
-
-    public static IStreamInfo GetStreamInfo(StreamManifest manifest, bool state) =>
-        state ? manifest.GetAudioOnlyStreams().GetWithHighestBitrate() : manifest.GetMuxedStreams().GetWithHighestVideoQuality();
 
     public static string GetPath(string addon = "")
     {
@@ -103,9 +93,8 @@ public static class Downloader
 
 public enum FileFormat
 {
-    Defalut,
-    Mp4,
     Mp3,
+    Mp4,
     WebM,
     Wav,
 }

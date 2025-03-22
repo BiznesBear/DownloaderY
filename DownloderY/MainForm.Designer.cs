@@ -36,8 +36,6 @@
             openFolderToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             downloadBtn = new Button();
-            isPlaylistBtn = new CheckBox();
-            audioOnlyBtn = new CheckBox();
             panel = new Panel();
             settingsBox = new GroupBox();
             historyListBox = new ListBox();
@@ -123,27 +121,6 @@
             downloadBtn.UseVisualStyleBackColor = false;
             downloadBtn.Click += DownloadBtn;
             // 
-            // isPlaylistBtn
-            // 
-            isPlaylistBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            isPlaylistBtn.AutoSize = true;
-            isPlaylistBtn.Location = new Point(192, 38);
-            isPlaylistBtn.Name = "isPlaylistBtn";
-            isPlaylistBtn.Size = new Size(161, 28);
-            isPlaylistBtn.TabIndex = 6;
-            isPlaylistBtn.Text = "Is playlist";
-            isPlaylistBtn.UseVisualStyleBackColor = false;
-            // 
-            // audioOnlyBtn
-            // 
-            audioOnlyBtn.AutoSize = true;
-            audioOnlyBtn.Location = new Point(13, 38);
-            audioOnlyBtn.Name = "audioOnlyBtn";
-            audioOnlyBtn.Size = new Size(149, 28);
-            audioOnlyBtn.TabIndex = 7;
-            audioOnlyBtn.Text = "Only audio";
-            audioOnlyBtn.UseVisualStyleBackColor = false;
-            // 
             // panel
             // 
             panel.Controls.Add(settingsBox);
@@ -159,8 +136,6 @@
             settingsBox.Controls.Add(historyListBox);
             settingsBox.Controls.Add(fileFormatLabel);
             settingsBox.Controls.Add(fileFormatComboBox);
-            settingsBox.Controls.Add(isPlaylistBtn);
-            settingsBox.Controls.Add(audioOnlyBtn);
             settingsBox.Dock = DockStyle.Fill;
             settingsBox.FlatStyle = FlatStyle.Flat;
             settingsBox.Location = new Point(0, 0);
@@ -189,7 +164,7 @@
             // fileFormatLabel
             // 
             fileFormatLabel.AutoSize = true;
-            fileFormatLabel.Location = new Point(13, 72);
+            fileFormatLabel.Location = new Point(13, 35);
             fileFormatLabel.Name = "fileFormatLabel";
             fileFormatLabel.Size = new Size(154, 24);
             fileFormatLabel.TabIndex = 9;
@@ -199,12 +174,12 @@
             // 
             fileFormatComboBox.FlatStyle = FlatStyle.System;
             fileFormatComboBox.FormattingEnabled = true;
-            fileFormatComboBox.Items.AddRange(new object[] { "Defalut", ".mp4", ".mp3", ".webm", ".wav" });
-            fileFormatComboBox.Location = new Point(173, 69);
+            fileFormatComboBox.Items.AddRange(new object[] { ".mp3", ".mp4", ".webm", ".wav" });
+            fileFormatComboBox.Location = new Point(173, 32);
             fileFormatComboBox.Name = "fileFormatComboBox";
             fileFormatComboBox.Size = new Size(165, 32);
             fileFormatComboBox.TabIndex = 8;
-            fileFormatComboBox.Text = "Defalut";
+            fileFormatComboBox.Text = ".mp3";
             // 
             // MainForm
             // 
@@ -237,8 +212,6 @@
         private ToolStripMenuItem pasteToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem;
         private Button downloadBtn;
-        private CheckBox isPlaylistBtn;
-        private CheckBox audioOnlyBtn;
         private Panel panel;
         private ToolStripMenuItem clearToolStripMenuItem;
         private GroupBox settingsBox;

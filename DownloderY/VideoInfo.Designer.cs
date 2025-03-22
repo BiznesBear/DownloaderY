@@ -39,12 +39,14 @@
             // 
             progressBar.BackColor = Color.FromArgb(25, 25, 25);
             progressBar.Dock = DockStyle.Bottom;
-            progressBar.ForeColor = Color.Red;
+            progressBar.ForeColor = Color.DarkRed;
             progressBar.Location = new Point(0, 174);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(596, 23);
             progressBar.Step = 25;
+            progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.TabIndex = 0;
+            progressBar.Value = 25;
             // 
             // titleLabel
             // 
@@ -53,9 +55,9 @@
             titleLabel.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             titleLabel.Location = new Point(0, 0);
             titleLabel.Name = "titleLabel";
-            titleLabel.Size = new Size(60, 22);
+            titleLabel.Size = new Size(110, 22);
             titleLabel.TabIndex = 1;
-            titleLabel.Text = "Title";
+            titleLabel.Text = "Loading...";
             // 
             // videoLenght
             // 
@@ -64,9 +66,9 @@
             videoLenght.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             videoLenght.Location = new Point(0, 22);
             videoLenght.Name = "videoLenght";
-            videoLenght.Size = new Size(70, 22);
+            videoLenght.Size = new Size(50, 22);
             videoLenght.TabIndex = 3;
-            videoLenght.Text = "Lenght";
+            videoLenght.Text = "0:00";
             // 
             // currentElementLabel
             // 
@@ -84,7 +86,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(596, 197);
-            ControlBox = false;
             Controls.Add(currentElementLabel);
             Controls.Add(videoLenght);
             Controls.Add(titleLabel);
@@ -93,7 +94,6 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "VideoInfo";
-            ShowInTaskbar = false;
             Text = "Video download status";
             ResumeLayout(false);
             PerformLayout();

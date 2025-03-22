@@ -1,7 +1,6 @@
 ﻿using YoutubeExplode.Videos;
 
 namespace DownloaderY;
-public record ProgresInfo(IVideo Item, int Index, int VideoCount);
 public partial class VideoInfo : Form
 {
     public VideoInfo()
@@ -9,15 +8,13 @@ public partial class VideoInfo : Form
         InitializeComponent();
     }
 
-    public void Set(ProgresInfo info)
+    public void Set(IVideo item, int index, int videoCount, bool failed = false)
     {
-        progressBar.Value = 0;
-        progressBar.PerformStep();
+        titleLabel.Text = failed? $"Failed to download {item.Title}" : item.Title;
+        currentElementLabel.Text = $"{index} element of {videoCount}";
 
-        titleLabel.Text = info.Item.Title;
-        currentElementLabel.Text = $"{info.Index} element of {info.VideoCount}";
-
-        videoLenght.Text = info.Item.Duration != null ? info.Item.Duration.Value.ToString() : "";
+        videoLenght.Text = item.Duration != null ? item.Duration.Value.ToString() : "";
     }
+
     public void Step() => progressBar.PerformStep();
 }

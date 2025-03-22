@@ -16,7 +16,7 @@ public partial class MainForm : Form
             MessageBox.Show("Url field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         else
         {
-            await Downloader.Download(urlBox.Text, audioOnlyBtn.Checked, isPlaylistBtn.Checked, (FileFormat)fileFormatComboBox.SelectedIndex);
+            await Downloader.Download(urlBox.Text, (FileFormat)fileFormatComboBox.SelectedIndex);
             RefreshHistory();
         }
     }
@@ -50,10 +50,13 @@ public partial class MainForm : Form
             Process.Start(new ProcessStartInfo($"{Downloader.defalutPath}\\{selectedItem}") { UseShellExecute = true });
         }
     }
+
     public void RefreshHistory()
     {
         historyListBox.Items.Clear();
-        string[] files = Directory.GetFiles(Downloader.defalutPath);
+        IEnumerable<string> files = Directory.GetFiles(Downloader.defalutPath);
+        files = files.Concat(Directory.GetDirectories(Downloader.defalutPath));
+
         foreach (string file in files)
             historyListBox.Items.Add(Path.GetFileName(file));
     }
