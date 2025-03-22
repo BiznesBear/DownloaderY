@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>images\ytdownloadericon.ico</ApplicationIcon>
     <StartupObject>DownloaderY.Program</StartupObject>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 	
   </PropertyGroup>
 
@@ -94,6 +95,13 @@
 
   <ItemGroup>
     <None Remove="C:\Users\ADAM\.nuget\packages\naudio.lame\2.1.0\build\libmp3lame.64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
